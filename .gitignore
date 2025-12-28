@@ -1,0 +1,30 @@
+# Binaries for platforms (built with "go build")
+app
+main
+cmd
+bin/
+dist/
+out/
+
+*.exe
+*.exe~
+
+# Test binaries
+*.test
+# Coverage reports
+coverage.out
+*.coverprofile
+
+# Module download cache (Go 1.12+)
+go/pkg/mod/
+
+*.so
+*.dylib
+
+.env
+.env.local
+
+.vscode/
+*.swp
+*.swo
+.DS_Store
