@@ -1,0 +1,8 @@
+main
+*.o
+*.out
+.vscode/
+.idea/
+*.swp
+*.swo
+
