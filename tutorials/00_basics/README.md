@@ -27,11 +27,13 @@
 在项目根目录构建整个项目：
 
 ```bash
-cd /mnt/e/small-project
+cd <project-root>
 mkdir -p build && cd build
 cmake ..
 make -j
 ```
+
+其中 `<project-root>` 是你克隆项目后的根目录。
 
 编译完成后，可执行文件位于：
 - `tutorials/00_basics/hello_world` - TODO 版本

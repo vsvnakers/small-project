@@ -27,11 +27,13 @@
 在项目根目录构建：
 
 ```bash
-cd /mnt/e/small-project
+cd <project-root>
 mkdir -p build && cd build
 cmake ..
 make -j
 ```
+
+其中 `<project-root>` 是你克隆项目后的根目录。
 
 编译完成后，可执行文件位于：
 - `tutorials/01_vector_add/vector_add` - TODO 版本
@@ -40,7 +42,7 @@ make -j
 ### 方法二：使用 nvcc 单独编译
 
 ```bash
-cd /mnt/e/small-project/tutorials/01_vector_add
+cd tutorials/01_vector_add
 
 # 编译 TODO 版本
 nvcc -o vector_add vector_add.cu -I../../include

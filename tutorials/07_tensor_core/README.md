@@ -38,11 +38,13 @@
 ### 方法一：使用 CMake（推荐）
 
 ```bash
-cd /mnt/e/small-project
+cd <project-root>
 mkdir -p build && cd build
 cmake ..
 make -j
 ```
+
+其中 `<project-root>` 是你克隆项目后的根目录。
 
 可执行文件位于：
 - `tutorials/07_tensor_core/tensor_core` - TODO 版本
@@ -51,7 +53,7 @@ make -j
 ### 方法二：使用 nvcc 单独编译
 
 ```bash
-cd /mnt/e/small-project/tutorials/07_tensor_core
+cd tutorials/07_tensor_core
 
 # 编译 TODO 版本（需要指定架构）
 nvcc -o tensor_core tensor_core.cu -I../../include -arch=sm_86
