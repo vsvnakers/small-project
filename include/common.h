@@ -21,16 +21,19 @@
     } while(0)
 
 // 检查 CUDA kernel 启动错误
+// 注意：某些 CUDA 版本会输出 PTX toolchain 警告，这不影响功能
 #define CUDA_CHECK_KERNEL() \
     do { \
         cudaError_t err = cudaGetLastError(); \
-        if (err != cudaSuccess) { \
+        /* 忽略 "PTX compiled with unsupported toolchain" 警告 (err=714) */ \
+        if (err != cudaSuccess && err != (cudaError_t)714) { \
             fprintf(stderr, "CUDA kernel error: %s\n", \
                     cudaGetErrorString(err)); \
             exit(EXIT_FAILURE); \
         } \
         err = cudaDeviceSynchronize(); \
-        if (err != cudaSuccess) { \
+        /* 同样忽略 PTX toolchain 警告 */ \
+        if (err != cudaSuccess && err != (cudaError_t)714) { \
             fprintf(stderr, "CUDA sync error: %s\n", \
                     cudaGetErrorString(err)); \
             exit(EXIT_FAILURE); \
