@@ -22,19 +22,19 @@
 
 // 检查 CUDA kernel 启动错误
 // 注意：某些 CUDA 版本会输出 PTX toolchain 警告，这不影响功能
-// CUDA 12.x 中错误码 223 = "the provided PTX was compiled with an unsupported toolchain"
+// CUDA 12.x 中错误码 222 = "the provided PTX was compiled with an unsupported toolchain"
 #define CUDA_CHECK_KERNEL() \
     do { \
         cudaError_t err = cudaGetLastError(); \
-        /* 忽略 "PTX compiled with unsupported toolchain" 警告 (err=223) */ \
-        if (err != cudaSuccess && err != (cudaError_t)223) { \
+        /* 忽略 "PTX compiled with unsupported toolchain" 警告 (err=222) */ \
+        if (err != cudaSuccess && err != (cudaError_t)222) { \
             fprintf(stderr, "CUDA kernel error: %s\n", \
                     cudaGetErrorString(err)); \
             exit(EXIT_FAILURE); \
         } \
         err = cudaDeviceSynchronize(); \
         /* 同样忽略 PTX toolchain 警告 */ \
-        if (err != cudaSuccess && err != (cudaError_t)223) { \
+        if (err != cudaSuccess && err != (cudaError_t)222) { \
             fprintf(stderr, "CUDA sync error: %s\n", \
                     cudaGetErrorString(err)); \
             exit(EXIT_FAILURE); \
