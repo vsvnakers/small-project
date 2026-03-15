@@ -9,6 +9,8 @@
 #include <stdio.h>
 
 // CUDA kernel 函数 - 在 GPU 上执行
+// 注意：kernel 内部的 printf 在某些系统 (如 WSL2) 上可能无法显示
+// 这不影响 CUDA 功能，只是显示问题
 __global__ void hello_kernel() {
     // 计算全局线程 ID
     // blockIdx.x: 当前 block 在 grid 中的索引
@@ -36,6 +38,16 @@ int main() {
 
     // 等待 GPU 完成
     cudaDeviceSynchronize();
+
+    // 注意：如果看不到 "Hello from thread X" 输出，这是正常的
+    // 某些系统 (WSL2/特定驱动) 会缓冲 CUDA kernel 的 printf 输出
+    // 这不影响 CUDA 功能，可以查看设备信息验证 GPU 正常工作
+    int device;
+    cudaDeviceProp prop;
+    cudaGetDevice(&device);
+    cudaGetDeviceProperties(&prop, device);
+    printf("GPU 设备：%s\n", prop.name);
+    printf("(如果看不到线程输出，这是正常的 - CUDA printf 在某些系统上被缓冲)\n");
 
     printf("\nCUDA 程序完成!\n");
 

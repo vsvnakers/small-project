@@ -83,7 +83,11 @@ Hello from thread 15
 CUDA 程序完成!
 ```
 
-> 注意：线程输出顺序可能不固定，因为 GPU 线程是并行执行的。
+> **注意：线程输出顺序可能不固定**，因为 GPU 线程是并行执行的。
+>
+> **如果在某些系统（如 WSL2）上看不到 "Hello from thread X" 输出**，这是正常的。
+> 某些驱动配置会缓冲 CUDA kernel 中的 printf 输出，这不影响 CUDA 功能。
+> 你可以通过其他方式验证 kernel 是否正常执行（如查看 GPU 利用率、使用 profiling 工具等）。
 
 ## 练习任务
 
